@@ -1,22 +1,20 @@
-import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { Code, Database, Globe, Layers } from "lucide-react";
+import React from "react";
 import { Badge } from "../ui/badge";
-import { Progress } from "../ui/progress";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-  CardFooter,
 } from "../ui/card";
-import { Code, Database, Globe, Layers } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 
 interface Skill {
   name: string;
   level: number;
-  category: "frontend" | "backend" | "tools" | "languages";
+  categories: ("frontend" | "backend" | "tools" | "languages")[];
 }
 
 interface SkillsSectionProps {
@@ -60,21 +58,26 @@ const translations = {
 };
 
 const defaultSkills: Skill[] = [
-  { name: "React", level: 90, category: "frontend" },
-  { name: "TypeScript", level: 85, category: "frontend" },
-  { name: "HTML/CSS", level: 95, category: "frontend" },
-  { name: "Tailwind CSS", level: 90, category: "frontend" },
-  { name: "Next.js", level: 80, category: "frontend" },
-  { name: "Node.js", level: 75, category: "backend" },
-  { name: "Express", level: 70, category: "backend" },
-  { name: "MongoDB", level: 65, category: "backend" },
-  { name: "PostgreSQL", level: 60, category: "backend" },
-  { name: "Git", level: 85, category: "tools" },
-  { name: "Docker", level: 60, category: "tools" },
-  { name: "CI/CD", level: 70, category: "tools" },
-  { name: "AWS", level: 55, category: "tools" },
-  { name: "English", level: 90, category: "languages" },
-  { name: "Portuguese", level: 100, category: "languages" },
+  { name: "React", level: 90, categories: ["frontend"] },
+  { name: "TypeScript", level: 85, categories: ["frontend", "backend"] },
+  { name: "Angular", level: 65, categories: ["frontend"] },
+  { name: "Next.js", level: 75, categories: ["frontend"] },
+  { name: "Tailwind CSS", level: 80, categories: ["frontend"] },
+  { name: "Sass", level: 70, categories: ["frontend"] },
+
+  { name: "NestJs", level: 85, categories: ["backend"] },
+  { name: "ExpressJs", level: 70, categories: ["backend"] },
+  { name: "MongoDB", level: 70, categories: ["backend"] },
+  { name: "PostgreSQL", level: 70, categories: ["backend"] },
+
+  { name: "Jest", level: 75, categories: ["tools"] },
+  { name: "Docker", level: 80, categories: ["tools"] },
+  { name: "Git", level: 85, categories: ["tools"] },
+  { name: "GitHub Actions", level: 70, categories: ["tools"] },
+  { name: "Redis", level: 60, categories: ["tools"] },
+
+  { name: "Advanced English", level: 90, categories: ["languages"] },
+  { name: "Intermediate Spanish", level: 70, categories: ["languages"] },
 ];
 
 const getLevelLabel = (level: number, language: "en" | "pt"): string => {
@@ -113,11 +116,6 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
   language = "en",
 }) => {
   const t = translations[language];
-  const [selectedCategory, setSelectedCategory] = useState<string>("frontend");
-
-  const filteredSkills = skills.filter(
-    (skill) => skill.category === selectedCategory,
-  );
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -136,6 +134,9 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
       opacity: 1,
     },
   };
+
+  // The categories used in the Tabs remain unchanged.
+  const categories = ["frontend", "backend", "tools", "languages"] as const;
 
   return (
     <section id="skills" className="py-20 bg-slate-50 dark:bg-slate-900">
@@ -157,61 +158,40 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
 
         <Tabs defaultValue="frontend" className="w-full max-w-5xl mx-auto">
           <TabsList className="grid grid-cols-4 mb-8 w-full max-w-md mx-auto">
-            <TabsTrigger
-              value="frontend"
-              onClick={() => setSelectedCategory("frontend")}
-              className="data-[state=active]:bg-primary data-[state=active]:text-white"
-            >
-              {t.categories.frontend}
-            </TabsTrigger>
-            <TabsTrigger
-              value="backend"
-              onClick={() => setSelectedCategory("backend")}
-              className="data-[state=active]:bg-primary data-[state=active]:text-white"
-            >
-              {t.categories.backend}
-            </TabsTrigger>
-            <TabsTrigger
-              value="tools"
-              onClick={() => setSelectedCategory("tools")}
-              className="data-[state=active]:bg-primary data-[state=active]:text-white"
-            >
-              {t.categories.tools}
-            </TabsTrigger>
-            <TabsTrigger
-              value="languages"
-              onClick={() => setSelectedCategory("languages")}
-              className="data-[state=active]:bg-primary data-[state=active]:text-white"
-            >
-              {t.categories.languages}
-            </TabsTrigger>
-          </TabsList>
-
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="space-y-6"
-          >
-            {["frontend", "backend", "tools", "languages"].map((category) => (
-              <TabsContent
+            {categories.map((category) => (
+              <TabsTrigger
                 key={category}
                 value={category}
-                className="space-y-4"
+                className="data-[state=active]:bg-primary data-[state=active]:text-white"
+              >
+                {t.categories[category]}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+
+          {categories.map((category) => (
+            <TabsContent key={category} value={category} className="space-y-4">
+              {/* Animate the inner content instead */}
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="space-y-6"
               >
                 <Card className="border-t-4 border-t-primary shadow-lg">
                   <CardHeader className="pb-2">
                     <div className="flex items-center">
                       {getCategoryIcon(category)}
                       <CardTitle className="text-xl">
-                        {t.categories[category as keyof typeof t.categories]}
+                        {t.categories[category]}
                       </CardTitle>
                     </div>
                     <CardDescription>
                       {
-                        skills.filter((skill) => skill.category === category)
-                          .length
+                        skills.filter((skill) =>
+                          skill.categories.includes(category)
+                        ).length
                       }{" "}
                       {t.skillsCount}
                     </CardDescription>
@@ -219,7 +199,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
                   <CardContent>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {skills
-                        .filter((skill) => skill.category === category)
+                        .filter((skill) => skill.categories.includes(category))
                         .map((skill, index) => (
                           <motion.div
                             key={index}
@@ -236,8 +216,8 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
                                   skill.level >= 90
                                     ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400"
                                     : skill.level >= 70
-                                      ? "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-400"
-                                      : "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400"
+                                    ? "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-400"
+                                    : "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400"
                                 }`}
                               >
                                 {getLevelLabel(skill.level, language)}
@@ -254,7 +234,9 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
                               <div className="overflow-hidden h-2 mb-4 text-xs flex rounded-full bg-slate-200 dark:bg-slate-700">
                                 <div
                                   style={{ width: `${skill.level}%` }}
-                                  className={`shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center ${getLevelColor(skill.level)}`}
+                                  className={`shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center ${getLevelColor(
+                                    skill.level
+                                  )}`}
                                 ></div>
                               </div>
                             </div>
@@ -263,9 +245,9 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({
                     </div>
                   </CardContent>
                 </Card>
-              </TabsContent>
-            ))}
-          </motion.div>
+              </motion.div>
+            </TabsContent>
+          ))}
         </Tabs>
 
         <div className="mt-16 text-center">

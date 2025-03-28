@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Button } from "../ui/button";
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { Button } from "../ui/button";
 
 interface HeroSectionProps {
   language?: "en" | "pt-br";
@@ -32,7 +32,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   onLanguageChange = () => {},
 }) => {
   const [currentLanguage, setCurrentLanguage] = useState<"en" | "pt-br">(
-    language,
+    language
   );
   const text = translations[currentLanguage];
 

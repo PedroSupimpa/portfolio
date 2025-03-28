@@ -1,26 +1,9 @@
-import React, { useState } from "react";
-import { useContext } from "react";
+import { motion } from "framer-motion";
+import { Briefcase, GraduationCap, Heart } from "lucide-react";
+import React from "react";
+import { useLanguage } from "../i18n/LanguageProvider";
 import { Card } from "../ui/card";
 import { Separator } from "../ui/separator";
-import { motion } from "framer-motion";
-
-// Assuming we'll have a language context from LanguageProvider
-interface LanguageContextType {
-  language: "en" | "pt-br";
-  setLanguage: (lang: "en" | "pt-br") => void;
-}
-
-const LanguageContext = React.createContext<LanguageContextType | undefined>(
-  undefined,
-);
-
-export const useLanguage = () => {
-  const context = useContext(LanguageContext);
-  if (context === undefined) {
-    return { language: "en", setLanguage: () => {} };
-  }
-  return context;
-};
 
 interface AboutSectionProps {
   id?: string;
@@ -29,35 +12,38 @@ interface AboutSectionProps {
 const AboutSection: React.FC<AboutSectionProps> = ({ id = "about" }) => {
   const { language } = useLanguage();
 
-  // Translation content
   const content = {
     en: {
       title: "About Me",
       subtitle: "Get to know me better",
-      bio: "I am a passionate software developer with expertise in building modern web applications. With several years of experience in the industry, I have worked on a variety of projects ranging from small business websites to complex enterprise applications.",
-      experience: "Experience",
-      experienceText:
-        "Over 5 years of professional experience working with React, TypeScript, and modern web technologies.",
+      bio: "Currently enrolled in Systems Analysis and Development, I have two years of experience as a Full-Stack Developer. I specialize in React and Node.js, focusing on developing interactive and high-performance solutions. Driven by continuous learning, I seek to constantly improve my skills and expand my expertise in new technologies.",
+      experience: "Experiences",
+      experienceText: `Full-Stack Developer at Araucárias (Sep 2024 - Present): Responsible for developing an institutional application integrating AI tools.
+Full-Stack Developer at MarjoSports (Nov 2023 - Sep 2024): Developed features for a betting platform using Node.js and Angular.
+Software Development Intern at Orion (Mar 2023 - May 2024): Focused on front-end development with React and back-end with C#.
+Electrician Technician at Voltech (2020 - 2022): Coordinated team operations and project management.`,
       education: "Education",
-      educationText:
-        "Bachelor's degree in Computer Science from a prestigious university, with additional certifications in web development and UI/UX design.",
+      educationText: `Bachelor in Systems Analysis and Development - UniCEUB (2022 - 2024)
+Bachelor of Chemistry - UnB (2016 - 2018, not completed)`,
       interests: "Interests",
       interestsText:
-        "When I'm not coding, I enjoy hiking, photography, and exploring new technologies. I'm also an avid reader and enjoy participating in tech communities.",
+        "I enjoy coding, learning new technologies, and exploring innovative solutions. I also have a keen interest in design and project management.",
     },
     "pt-br": {
       title: "Sobre Mim",
       subtitle: "Conheça-me melhor",
-      bio: "Sou um desenvolvedor de software apaixonado com experiência na construção de aplicações web modernas. Com vários anos de experiência na indústria, trabalhei em uma variedade de projetos, desde sites de pequenas empresas até aplicações empresariais complexas.",
-      experience: "Experiência",
-      experienceText:
-        "Mais de 5 anos de experiência profissional trabalhando com React, TypeScript e tecnologias web modernas.",
+      bio: "Atualmente matriculado em Análise e Desenvolvimento de Sistemas, possuo dois anos de experiência como Desenvolvedor Full-Stack. Especializado em React e Node.js, foco no desenvolvimento de soluções interativas e de alta performance. Motivado pelo aprendizado contínuo, busco aprimorar minhas habilidades e expandir meu conhecimento em novas tecnologias.",
+      experience: "Experiências",
+      experienceText: `Desenvolvedor Full-Stack na Araucárias (Set 2024 - Presente): Responsável pelo desenvolvimento de um aplicativo institucional integrando ferramentas de IA.
+Desenvolvedor Full-Stack na MarjoSports (Nov 2023 - Set 2024): Desenvolvimento de funcionalidades para uma plataforma de apostas com Node.js e Angular.
+Estagiário em Desenvolvimento de Software na Orion (Mar 2023 - Mai 2024): Foco no desenvolvimento front-end com React e back-end com C#.
+Técnico Eletricista na Voltech (2020 - 2022): Coordenação de equipe e gerenciamento de projetos.`,
       education: "Educação",
-      educationText:
-        "Bacharelado em Ciência da Computação por uma universidade prestigiada, com certificações adicionais em desenvolvimento web e design de UI/UX.",
+      educationText: `Bacharel em Análise e Desenvolvimento de Sistemas - UniCEUB (2022 - 2024)
+Bacharelado em Química - UnB (2016 - 2018, não concluído)`,
       interests: "Interesses",
       interestsText:
-        "Quando não estou programando, gosto de fazer trilhas, fotografia e explorar novas tecnologias. Também sou um leitor ávido e gosto de participar em comunidades de tecnologia.",
+        "Gosto de programar, aprender novas tecnologias e explorar soluções inovadoras. Também tenho interesse em design e gerenciamento de projetos.",
     },
   };
 
@@ -82,85 +68,30 @@ const AboutSection: React.FC<AboutSectionProps> = ({ id = "about" }) => {
           <p className="text-xl text-slate-600 dark:text-slate-400">
             {t.subtitle}
           </p>
-          <Separator className="mt-4 mx-auto w-24" />
+          <Separator className="mt-4 mx-auto w-24 bg-gradient-to-r from-blue-500 to-purple-600" />
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
-            className="md:col-span-1"
+            className="relative"
           >
-            <div className="rounded-lg overflow-hidden mb-6">
-              <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80"
-                alt="Profile"
-                className="w-full h-auto object-cover rounded-lg"
-              />
-            </div>
-            <div className="flex justify-center space-x-4">
-              <a
-                href="#"
-                className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="lucide lucide-github"
-                >
-                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-                  <path d="M9 18c-4.51 2-5-2-7-2"></path>
-                </svg>
-              </a>
-              <a
-                href="#"
-                className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="lucide lucide-linkedin"
-                >
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                  <rect width="4" height="12" x="2" y="9"></rect>
-                  <circle cx="4" cy="4" r="2"></circle>
-                </svg>
-              </a>
-              <a
-                href="#"
-                className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="lucide lucide-twitter"
-                >
-                  <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
-                </svg>
-              </a>
+            <div className="sticky top-20">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl blur-xl opacity-20"></div>
+                <Card className="relative overflow-hidden rounded-2xl border-2 border-slate-200 dark:border-slate-700">
+                  <div className="aspect-square overflow-hidden">
+                    <img
+                      src="./profile-img.jpg"
+                      alt="Profile"
+                      className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                </Card>
+              </div>
             </div>
           </motion.div>
 
@@ -169,20 +100,51 @@ const AboutSection: React.FC<AboutSectionProps> = ({ id = "about" }) => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            className="md:col-span-2"
           >
-            <Card className="p-6 h-full">
-              <div className="prose dark:prose-invert max-w-none">
-                <p className="text-lg mb-6">{t.bio}</p>
+            <Card className="p-8 space-y-8 bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700">
+              <div>
+                <div className="p-6 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm">
+                  <p className="text-lg text-slate-900 dark:text-white leading-relaxed">
+                    {t.bio}
+                  </p>
+                </div>
+                <div className="flex items-center gap-3 mb-4">
+                  <Briefcase className="h-6 w-6 text-blue-500" />
+                  <h3 className="text-2xl font-semibold text-slate-900 dark:text-white">
+                    {t.experience}
+                  </h3>
+                </div>
+                <p className="text-slate-700 dark:text-slate-300 whitespace-pre-line leading-relaxed">
+                  {t.experienceText}
+                </p>
+              </div>
 
-                <h3 className="text-2xl font-semibold mb-3">{t.experience}</h3>
-                <p className="mb-6">{t.experienceText}</p>
+              <Separator />
 
-                <h3 className="text-2xl font-semibold mb-3">{t.education}</h3>
-                <p className="mb-6">{t.educationText}</p>
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <GraduationCap className="h-6 w-6 text-purple-500" />
+                  <h3 className="text-2xl font-semibold text-slate-900 dark:text-white">
+                    {t.education}
+                  </h3>
+                </div>
+                <p className="text-slate-700 dark:text-slate-300 whitespace-pre-line leading-relaxed">
+                  {t.educationText}
+                </p>
+              </div>
 
-                <h3 className="text-2xl font-semibold mb-3">{t.interests}</h3>
-                <p>{t.interestsText}</p>
+              <Separator />
+
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <Heart className="h-6 w-6 text-red-500" />
+                  <h3 className="text-2xl font-semibold text-slate-900 dark:text-white">
+                    {t.interests}
+                  </h3>
+                </div>
+                <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
+                  {t.interestsText}
+                </p>
               </div>
             </Card>
           </motion.div>

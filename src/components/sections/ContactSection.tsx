@@ -2,13 +2,7 @@ import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardFooter,
-} from "../ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Mail, MessageSquare, Send, Phone, ExternalLink } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageProvider";
 
@@ -21,15 +15,11 @@ const ContactSection: React.FC<ContactSectionProps> = ({
   id = "contact",
   language: propLanguage,
 }) => {
-  // Try to use the language from context, fall back to prop if context is not available
   let contextLanguage;
   try {
     const context = useLanguage();
     contextLanguage = context.language;
-  } catch (error) {
-    // If useLanguage fails, we'll use the prop language
-  }
-
+  } catch (error) {}
   const language = contextLanguage || propLanguage || "en";
   const [formData, setFormData] = useState({
     name: "",
@@ -47,7 +37,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({
       nameLabel: "Name",
       namePlaceholder: "Your name",
       emailLabel: "Email",
-      emailPlaceholder: "your.email@example.com",
+      emailPlaceholder: "shiro2303@gmail.com",
       messageLabel: "Message",
       messagePlaceholder: "Your message here...",
       sendButton: "Send Message",
@@ -57,7 +47,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({
       whatsappText: "WhatsApp",
       emailText: "Email",
       phoneText: "Phone",
-      portfolioText: "Portfolio",
+      portfolioText: "LinkedIn",
     },
     "pt-BR": {
       title: "Entre em Contato",
@@ -65,7 +55,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({
       nameLabel: "Nome",
       namePlaceholder: "Seu nome",
       emailLabel: "Email",
-      emailPlaceholder: "seu.email@exemplo.com",
+      emailPlaceholder: "shiro2303@gmail.com",
       messageLabel: "Mensagem",
       messagePlaceholder: "Sua mensagem aqui...",
       sendButton: "Enviar Mensagem",
@@ -75,7 +65,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({
       whatsappText: "WhatsApp",
       emailText: "Email",
       phoneText: "Telefone",
-      portfolioText: "Portfólio",
+      portfolioText: "LinkedIn",
     },
   };
 
@@ -83,7 +73,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({
     translations[language as keyof typeof translations] || translations.en;
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -93,14 +83,12 @@ const ContactSection: React.FC<ContactSectionProps> = ({
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission with a delay
     setTimeout(() => {
       console.log("Form submitted:", formData);
       setIsSubmitting(false);
       setSubmitSuccess(true);
       setFormData({ name: "", email: "", message: "" });
 
-      // Reset success message after 3 seconds
       setTimeout(() => {
         setSubmitSuccess(false);
       }, 3000);
@@ -237,7 +225,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({
               </CardHeader>
               <CardContent className="grid gap-4">
                 <a
-                  href="https://wa.me/5511999999999" // Replace with your actual WhatsApp number
+                  href="https://wa.me/55619119558584"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center p-4 rounded-lg bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 hover:bg-green-100 dark:hover:bg-green-900/30 transition-colors"
@@ -246,39 +234,36 @@ const ContactSection: React.FC<ContactSectionProps> = ({
                   <div>
                     <div className="font-medium text-lg">{t.whatsappText}</div>
                     <div className="text-sm text-green-600/80 dark:text-green-400/80">
-                      +55 11 99999-9999
+                      +55 (61) 9 9118-5584
                     </div>
                   </div>
                 </a>
-
                 <a
-                  href="mailto:your.email@example.com" // Replace with your actual email
+                  href="mailto:shiro2303@gmail.com"
                   className="flex items-center p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors"
                 >
                   <Mail className="h-6 w-6 mr-4" />
                   <div>
                     <div className="font-medium text-lg">{t.emailText}</div>
                     <div className="text-sm text-blue-600/80 dark:text-blue-400/80">
-                      your.email@example.com
+                      shiro2303@gmail.com
                     </div>
                   </div>
                 </a>
-
                 <a
-                  href="tel:+5511999999999" // Replace with your actual phone number
+                  href="tel:+55619119558584"
                   className="flex items-center p-4 rounded-lg bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors"
                 >
                   <Phone className="h-6 w-6 mr-4" />
                   <div>
                     <div className="font-medium text-lg">{t.phoneText}</div>
                     <div className="text-sm text-purple-600/80 dark:text-purple-400/80">
-                      +55 11 99999-9999
+                      +55 (61) 9 9118-5584
                     </div>
                   </div>
                 </a>
-
                 <a
-                  href="https://yourportfolio.com" // Replace with your actual portfolio URL
+                  href="https://linkedin.com/in/pedro-e-m-souza"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center p-4 rounded-lg bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 hover:bg-amber-100 dark:hover:bg-amber-900/30 transition-colors"
@@ -287,7 +272,7 @@ const ContactSection: React.FC<ContactSectionProps> = ({
                   <div>
                     <div className="font-medium text-lg">{t.portfolioText}</div>
                     <div className="text-sm text-amber-600/80 dark:text-amber-400/80">
-                      yourportfolio.com
+                      linkedin.com/in/pedro-e-m-souza
                     </div>
                   </div>
                 </a>
