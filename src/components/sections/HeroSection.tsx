@@ -11,7 +11,7 @@ interface HeroSectionProps {
 const translations = {
   en: {
     greeting: "Hello, I am",
-    name: "John Doe",
+    name: "Pedro Souza",
     title: "Full Stack Developer",
     description:
       "I build exceptional and accessible digital experiences for the web.",
@@ -19,7 +19,7 @@ const translations = {
   },
   "pt-br": {
     greeting: "Olá, eu sou",
-    name: "John Doe",
+    name: "Pedro Souza",
     title: "Desenvolvedor Full Stack",
     description:
       "Eu construo experiências digitais excepcionais e acessíveis para a web.",
