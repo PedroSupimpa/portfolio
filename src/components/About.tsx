@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import { Calendar, Code2, Coffee, PenTool, User2, Zap } from "lucide-react";
@@ -8,13 +7,8 @@ const About = () => {
   const stats = [
     {
       icon: <Calendar className="h-5 w-5 text-dev-purple" />,
-      value: "5+",
+      value: "3",
       label: "Years Experience",
-    },
-    {
-      icon: <Code2 className="h-5 w-5 text-dev-purple" />,
-      value: "50+",
-      label: "Projects Completed",
     },
     {
       icon: <Coffee className="h-5 w-5 text-dev-purple" />,
@@ -36,28 +30,21 @@ const About = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               About <span className="gradient-text">Me</span>
             </h2>
-            
+
             <div className="space-y-4 text-gray-300">
               <p>
-                I'm a passionate software developer with a focus on creating
-                beautiful, functional, and user-friendly applications. With over
-                5 years of experience in the industry, I've worked on a wide
-                range of projects from small startups to large enterprises.
+                Hi, I'm Pedro Souza, a Full-Stack Developer with over 2 years of
+                experience. Currently enrolled in Systems Analysis and
+                Development, I specialize in React and Node.js, developing
+                interactive, high-performance solutions.
               </p>
               <p>
-                My journey in software development began when I built my first
-                website at the age of 15. Since then, I've continuously expanded
-                my knowledge and skills, staying current with emerging technologies
-                and best practices.
-              </p>
-              <p>
-                I believe in writing clean, maintainable code and creating
-                intuitive user experiences. My goal is always to build products
-                that not only meet but exceed client expectations and deliver
-                real value to users.
+                My passion for continuous learning drives me to improve my
+                skills and embrace new technologies, ensuring that I deliver
+                innovative and efficient solutions in every project.
               </p>
             </div>
-            
+
             <div className="flex flex-wrap gap-8 my-8">
               {stats.map((stat, index) => (
                 <motion.div
@@ -78,15 +65,15 @@ const About = () => {
                 </motion.div>
               ))}
             </div>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="bg-dev-purple hover:bg-dev-darkPurple text-white"
                 asChild
               >
@@ -94,7 +81,7 @@ const About = () => {
               </Button>
             </motion.div>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -108,62 +95,108 @@ const About = () => {
                   <User2 className="h-6 w-6 text-dev-purple mr-2" />
                   Professional Journey
                 </h3>
-                
+
                 <div className="space-y-8">
                   <div className="relative pl-8 border-l border-gray-700">
                     <div className="absolute w-4 h-4 bg-dev-purple rounded-full -left-2 top-0"></div>
-                    <h4 className="text-lg font-bold mb-1">Senior Software Developer</h4>
-                    <p className="text-dev-purple text-sm mb-2">2021 - Present</p>
+                    <h4 className="text-lg font-bold mb-1">
+                      Full-Stack Developer - Araucárias
+                    </h4>
+                    <p className="text-dev-purple text-sm mb-2">
+                      Sep 2024 - Present
+                    </p>
                     <p className="text-gray-300 text-sm">
-                      Leading development of enterprise applications, mentoring junior developers, and implementing best practices.
+                      Responsible for architecting and developing an
+                      institutional application integrating AI tools tailored
+                      for universities and companies. Handling full autonomy in
+                      both back-end and front-end, including multiple API
+                      integrations.
                     </p>
                   </div>
-                  
+
                   <div className="relative pl-8 border-l border-gray-700">
                     <div className="absolute w-4 h-4 bg-dev-purple rounded-full -left-2 top-0"></div>
-                    <h4 className="text-lg font-bold mb-1">Frontend Developer</h4>
-                    <p className="text-dev-purple text-sm mb-2">2019 - 2021</p>
+                    <h4 className="text-lg font-bold mb-1">
+                      Full-Stack Developer - MarjoSports
+                    </h4>
+                    <p className="text-dev-purple text-sm mb-2">
+                      Nov 2023 - Sep 2024
+                    </p>
                     <p className="text-gray-300 text-sm">
-                      Built responsive web applications using React, Vue, and modern frontend technologies.
+                      Developed and integrated new features for a betting
+                      platform using Node.js, MongoDB, and Angular. Managed
+                      external API integrations and improved overall system
+                      performance.
                     </p>
                   </div>
-                  
+
+                  <div className="relative pl-8 border-l border-gray-700">
+                    <div className="absolute w-4 h-4 bg-dev-purple rounded-full -left-2 top-0"></div>
+                    <h4 className="text-lg font-bold mb-1">
+                      Software Development Intern - Orion
+                    </h4>
+                    <p className="text-dev-purple text-sm mb-2">
+                      Mar 2023 - May 2024
+                    </p>
+                    <p className="text-gray-300 text-sm">
+                      Focused on front-end development with TypeScript and
+                      React.js to enhance user experience, including developing
+                      real-time dashboards and unit testing with Jest.
+                    </p>
+                  </div>
+
                   <div className="relative pl-8">
                     <div className="absolute w-4 h-4 bg-dev-purple rounded-full -left-2 top-0"></div>
-                    <h4 className="text-lg font-bold mb-1">Junior Web Developer</h4>
-                    <p className="text-dev-purple text-sm mb-2">2017 - 2019</p>
+                    <h4 className="text-lg font-bold mb-1">
+                      Electrician Technician - Voltech (Framingham, MA, EUA)
+                    </h4>
+                    <p className="text-dev-purple text-sm mb-2">2020 - 2022</p>
                     <p className="text-gray-300 text-sm">
-                      Started my professional career working on websites and small web applications.
+                      Assisted in project planning, equipment installation, and
+                      maintenance of electrical systems for residential and
+                      commercial properties, while coordinating team efforts and
+                      client communications.
                     </p>
                   </div>
                 </div>
               </div>
-              
+
               <div className="bg-dev-purple/10 p-8">
                 <h3 className="text-xl font-bold mb-4 flex items-center">
                   <Zap className="h-5 w-5 text-dev-purple mr-2" />
                   Core Values
                 </h3>
-                
+
                 <div className="space-y-3">
                   <div className="flex items-start">
                     <PenTool className="h-5 w-5 text-dev-purple mr-2 mt-0.5" />
                     <p className="text-sm text-gray-300">
-                      <span className="font-bold text-white">Craftsmanship:</span> I believe in writing clean, maintainable, and well-tested code.
+                      <span className="font-bold text-white">
+                        Craftsmanship:
+                      </span>{" "}
+                      I believe in writing clean, maintainable code.
                     </p>
                   </div>
-                  
+
                   <div className="flex items-start">
                     <PenTool className="h-5 w-5 text-dev-purple mr-2 mt-0.5" />
                     <p className="text-sm text-gray-300">
-                      <span className="font-bold text-white">User-Centric:</span> I focus on creating intuitive interfaces and meaningful user experiences.
+                      <span className="font-bold text-white">
+                        User-Centric:
+                      </span>{" "}
+                      I focus on creating intuitive and impactful user
+                      experiences.
                     </p>
                   </div>
-                  
+
                   <div className="flex items-start">
                     <PenTool className="h-5 w-5 text-dev-purple mr-2 mt-0.5" />
                     <p className="text-sm text-gray-300">
-                      <span className="font-bold text-white">Continuous Learning:</span> I'm dedicated to growing my skills and knowledge every day.
+                      <span className="font-bold text-white">
+                        Continuous Learning:
+                      </span>{" "}
+                      Committed to constantly evolving and mastering new
+                      technologies.
                     </p>
                   </div>
                 </div>

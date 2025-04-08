@@ -1,37 +1,39 @@
-
-import React from "react";
-import { motion } from "framer-motion";
-import { Github, ExternalLink } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import { ExternalLink, Github } from "lucide-react";
 
 const projectsData = [
   {
     id: 1,
-    title: "E-Commerce Platform",
-    description: "A full-stack e-commerce platform with payment processing, user authentication, and inventory management.",
-    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    tags: ["React", "Node.js", "MongoDB", "Stripe", "Redux"],
+    title: "SporTickets",
+    description:
+      "A full-stack platform for buying and selling tickets for sports events, featuring user authentication and payment processing.",
+    image: "https://lucasharosa.github.io/imagens/sporticket.png",
+    tags: ["Next.js", "NestJs", "Postgre", "Redis", "MercadoPago", "Heroku"],
     githubUrl: "#",
-    liveUrl: "#",
+    liveUrl: "https://beta.sportickets.com.br/",
   },
   {
     id: 2,
-    title: "AI Task Manager",
-    description: "Smart task management application that uses machine learning to prioritize and categorize tasks.",
-    image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    tags: ["Python", "TensorFlow", "React", "FastAPI", "PostgreSQL"],
+    title: "Wheel of Prizes",
+    description:
+      "An web application where the user can create a wheel of prizes and share it with friends.",
+    image:
+      "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    tags: ["Vite", "React", "NestJs", "Postgre"],
     githubUrl: "#",
     liveUrl: "#",
   },
   {
     id: 3,
-    title: "Real-time Chat Application",
-    description: "Secure, real-time messaging platform with end-to-end encryption and file sharing capabilities.",
-    image: "https://images.unsplash.com/photo-1556155092-490a1ba16284?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    tags: ["Socket.io", "React", "Express", "MongoDB", "WebRTC"],
+    title: "IUCAI",
+    description:
+      "Web application developed for the University Institute of São Tomé and Príncipe to promote the institution and its courses.",
+    image: "https://zzzbeck.github.io/iucai.png",
+    tags: ["Nextjs", "Tailwind CSS"],
     githubUrl: "#",
-    liveUrl: "#",
+    liveUrl: "https://www.iucai.info/pt",
   },
 ];
 
@@ -121,7 +123,11 @@ const Projects = () => {
                     className="flex items-center gap-1"
                     asChild
                   >
-                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <Github className="h-4 w-4" />
                       Code
                     </a>
@@ -131,7 +137,11 @@ const Projects = () => {
                     className="bg-dev-purple hover:bg-dev-darkPurple flex items-center gap-1"
                     asChild
                   >
-                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       Live Demo
                       <ExternalLink className="h-4 w-4" />
                     </a>

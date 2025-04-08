@@ -1,15 +1,11 @@
-
-import React from "react";
 import { motion } from "framer-motion";
 import {
-  Database,
-  Globe,
   Code,
   Cpu,
-  Server,
+  Database,
+  Globe,
   PaintBucket,
-  LayoutGrid,
-  Cog,
+  Server,
   Shield,
   TrendingUp,
 } from "lucide-react";
@@ -20,79 +16,25 @@ const Skills = () => {
       id: "frontend",
       title: "Frontend",
       icon: <Globe className="h-6 w-6 text-dev-purple" />,
-      skills: [
-        "React & Redux",
-        "Next.js",
-        "TypeScript",
-        "Vue.js",
-        "Angular",
-        "HTML/CSS",
-      ],
+      skills: ["React", "Angular", "Next", "Vite", "Tailwind", "Bootstrap"],
     },
     {
       id: "backend",
       title: "Backend",
       icon: <Server className="h-6 w-6 text-dev-purple" />,
-      skills: [
-        "Node.js",
-        "Express",
-        "Django",
-        "Flask",
-        "Spring Boot",
-        "GraphQL",
-      ],
+      skills: ["Node.js", "NestJs", "Django", "C#"],
     },
     {
       id: "databases",
       title: "Databases",
       icon: <Database className="h-6 w-6 text-dev-purple" />,
-      skills: [
-        "MongoDB",
-        "PostgreSQL",
-        "MySQL",
-        "Redis",
-        "Firebase",
-        "Supabase",
-      ],
-    },
-    {
-      id: "devops",
-      title: "DevOps",
-      icon: <Cog className="h-6 w-6 text-dev-purple" />,
-      skills: [
-        "Docker",
-        "Kubernetes",
-        "AWS",
-        "CI/CD",
-        "Terraform",
-        "Monitoring",
-      ],
-    },
-    {
-      id: "mobile",
-      title: "Mobile",
-      icon: <LayoutGrid className="h-6 w-6 text-dev-purple" />,
-      skills: [
-        "React Native",
-        "Flutter",
-        "Swift",
-        "Kotlin",
-        "Mobile UI/UX",
-        "PWA",
-      ],
+      skills: ["MongoDB", "PostgreSQL", "MySQL", "Redis"],
     },
     {
       id: "tools",
       title: "Tools & Others",
       icon: <Cpu className="h-6 w-6 text-dev-purple" />,
-      skills: [
-        "Git/GitHub",
-        "Jira",
-        "Figma",
-        "Webpack",
-        "Jest",
-        "Cypress",
-      ],
+      skills: ["Jest", "Docker", "Git", "Figma", "GCP", "Azure"],
     },
   ];
 
@@ -131,8 +73,8 @@ const Skills = () => {
             Technical <span className="gradient-text">Skills</span>
           </h2>
           <p className="text-gray-300 max-w-2xl mx-auto">
-            My toolkit of languages, frameworks, and technologies that I've
-            mastered to create efficient and innovative solutions.
+            My toolkit of languages, frameworks, and technologies to build
+            efficient and innovative solutions.
           </p>
         </motion.div>
 
@@ -141,7 +83,7 @@ const Skills = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
         >
           {skillCategories.map((category) => (
             <motion.div
@@ -159,12 +101,12 @@ const Skills = () => {
                 {category.skills.map((skill) => (
                   <motion.div
                     key={skill}
-                    whileHover={{ 
+                    whileHover={{
                       scale: 1.05,
-                      backgroundColor: "rgba(139, 92, 246, 0.2)"  
+                      backgroundColor: "rgba(139, 92, 246, 0.2)",
                     }}
                     transition={{ duration: 0.2 }}
-                    className="skill-item text-sm"
+                    className="skill-item text-sm flex items-center space-x-1"
                   >
                     <Code className="h-4 w-4 text-dev-purple" />
                     <span>{skill}</span>
