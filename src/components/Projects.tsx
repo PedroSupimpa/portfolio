@@ -14,6 +14,7 @@ const projectsData = [
     image: "https://lucasharosa.github.io/imagens/sporticket.png",
     tags: ["Next.js", "NestJs", "Postgre", "Redis", "MercadoPago", "Heroku"],
     liveUrl: "https://beta.sportickets.com.br/",
+    isRealProject: true,
   },
   {
     id: 2,
@@ -46,6 +47,7 @@ const projectsData = [
     image: "https://zzzbeck.github.io/iucai.png",
     tags: ["Nextjs", "Tailwind CSS"],
     liveUrl: "https://www.iucai.info/pt",
+    isRealProject: true,
   },
 ];
 
@@ -104,7 +106,6 @@ const Projects = () => {
               variants={itemVariants}
               className="project-card flex flex-col h-full"
             >
-              {/* Image section - fixed height */}
               <div className="relative h-56 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
                 <img
@@ -114,11 +115,16 @@ const Projects = () => {
                 />
               </div>
 
-              {/* Content section - flex grow to fill space */}
               <div className="p-6 flex flex-col flex-grow">
-                <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+                <h3 className="text-xl font-bold mb-2 items-center">
+                  {project.title}
+                  {project.isRealProject && (
+                    <Badge className="ml-2 bg-green-500/20 text-green-400 border-green-500/30 hover:bg-green-500/30">
+                      Real Project
+                    </Badge>
+                  )}
+                </h3>
 
-                {/* Description with fixed height */}
                 <div className="mb-4 min-h-[60px]">
                   {project.description ? (
                     <p className="text-gray-300 text-sm line-clamp-3">
@@ -131,7 +137,6 @@ const Projects = () => {
                   )}
                 </div>
 
-                {/* Tags with fixed height container */}
                 <div className="flex flex-wrap gap-2 mb-5 min-h-[40px]">
                   {project.tags && project.tags.length > 0 ? (
                     project.tags.map((tag) => (
@@ -153,7 +158,6 @@ const Projects = () => {
                   )}
                 </div>
 
-                {/* Buttons section - always at the bottom */}
                 <div className="mt-auto flex gap-2">
                   {project.githubUrl ? (
                     <Button
