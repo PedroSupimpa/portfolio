@@ -19,12 +19,12 @@ const projectsData = [
     id: 2,
     title: "Wheel of Prizes",
     description:
-      "An web application where the user can create a wheel of prizes and share it with friends.",
+      "Simple version of a real project I and @zzzBeck developed for a client. It allows users to create a customizable wheel of prizes and sent to their friends.",
     image:
       "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    tags: ["Vite", "React", "NestJs", "Postgre"],
-    githubUrl: "#",
-    liveUrl: "#",
+    tags: ["Vite", "React", "Tailwind CSS"],
+    githubUrl: "https://github.com/PedroSupimpa/custom-wheels",
+    liveUrl: "https://custom-wheels.vercel.app/",
   },
   {
     id: 3,
