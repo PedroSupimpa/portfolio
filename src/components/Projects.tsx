@@ -17,11 +17,23 @@ const projectsData = [
   },
   {
     id: 2,
-    title: "Wheel of Prizes",
-    description:
-      "Simple version of a real project I and @zzzBeck developed for a client. It allows users to create a customizable wheel of prizes and sent to their friends.",
+    title: "Custom Wheels",
+    description: (
+      <>
+        Custom Wheels is a simplified version of a real-world project originally
+        developed for a client. It was created in collaboration with{" "}
+        <a
+          href="https://github.com/zzzbeck"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-dev-purple hover:underline"
+        >
+          @zzzBeck
+        </a>
+      </>
+    ),
     image:
-      "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "https://media.istockphoto.com/id/2090799539/video/spinning-fortune-wheel-animation-on-red-background-4k-loopable-3d-animation.jpg?s=640x640&k=20&c=ouTdD3UuT9XWCsd4-fVR8E1mbM1GzMt-Eyjco427VpA=",
     tags: ["Vite", "React", "Tailwind CSS"],
     githubUrl: "https://github.com/PedroSupimpa/custom-wheels",
     liveUrl: "https://custom-wheels.vercel.app/",

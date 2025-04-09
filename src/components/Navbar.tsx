@@ -1,8 +1,6 @@
-
-import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -45,7 +43,10 @@ const Navbar = () => {
           whileHover={{ scale: 1.05 }}
           transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
-          <a href="#home" className="text-2xl font-bold gradient-text font-code">
+          <a
+            href="#home"
+            className="text-2xl font-bold gradient-text font-code"
+          >
             {"<Dev/>"}
           </a>
         </motion.div>
@@ -63,12 +64,6 @@ const Navbar = () => {
               {link.name}
             </motion.a>
           ))}
-          <Button
-            size="sm"
-            className="bg-dev-purple hover:bg-dev-darkPurple text-white"
-          >
-            Resume
-          </Button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -106,12 +101,6 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            <Button
-              size="sm"
-              className="bg-dev-purple hover:bg-dev-darkPurple text-white w-full mt-4"
-            >
-              Resume
-            </Button>
           </div>
         </motion.div>
       )}
