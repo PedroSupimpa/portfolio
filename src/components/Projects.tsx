@@ -1,3 +1,5 @@
+"use client";
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
@@ -11,7 +13,6 @@ const projectsData = [
       "A full-stack platform for buying and selling tickets for sports events, featuring user authentication and payment processing.",
     image: "https://lucasharosa.github.io/imagens/sporticket.png",
     tags: ["Next.js", "NestJs", "Postgre", "Redis", "MercadoPago", "Heroku"],
-    githubUrl: "#",
     liveUrl: "https://beta.sportickets.com.br/",
   },
   {
@@ -32,7 +33,6 @@ const projectsData = [
       "Web application developed for the University Institute of São Tomé and Príncipe to promote the institution and its courses.",
     image: "https://zzzbeck.github.io/iucai.png",
     tags: ["Nextjs", "Tailwind CSS"],
-    githubUrl: "#",
     liveUrl: "https://www.iucai.info/pt",
   },
 ];
@@ -90,62 +90,97 @@ const Projects = () => {
             <motion.div
               key={project.id}
               variants={itemVariants}
-              className="project-card"
+              className="project-card flex flex-col h-full"
             >
+              {/* Image section - fixed height */}
               <div className="relative h-56 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
                 <img
-                  src={project.image}
+                  src={project.image || "/placeholder.svg"}
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                 />
               </div>
-              <div className="p-6">
+
+              {/* Content section - flex grow to fill space */}
+              <div className="p-6 flex flex-col flex-grow">
                 <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                <p className="text-gray-300 mb-4 text-sm">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-5">
-                  {project.tags.map((tag) => (
-                    <Badge
-                      key={tag}
-                      variant="secondary"
-                      className="bg-dev-purple/10 text-dev-lightPurple text-xs"
-                    >
-                      {tag}
-                    </Badge>
-                  ))}
+
+                {/* Description with fixed height */}
+                <div className="mb-4 min-h-[60px]">
+                  {project.description ? (
+                    <p className="text-gray-300 text-sm line-clamp-3">
+                      {project.description}
+                    </p>
+                  ) : (
+                    <p className="text-gray-500 text-sm italic">
+                      No description available
+                    </p>
+                  )}
                 </div>
-                <div className="flex justify-between">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="flex items-center gap-1"
-                    asChild
-                  >
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
+
+                {/* Tags with fixed height container */}
+                <div className="flex flex-wrap gap-2 mb-5 min-h-[40px]">
+                  {project.tags && project.tags.length > 0 ? (
+                    project.tags.map((tag) => (
+                      <Badge
+                        key={tag}
+                        variant="secondary"
+                        className="bg-dev-purple/10 text-dev-lightPurple text-xs h-6 px-2"
+                      >
+                        {tag}
+                      </Badge>
+                    ))
+                  ) : (
+                    <Badge
+                      variant="outline"
+                      className="text-gray-500 text-xs h-6 px-2"
                     >
-                      <Github className="h-4 w-4" />
-                      Code
-                    </a>
-                  </Button>
-                  <Button
-                    size="sm"
-                    className="bg-dev-purple hover:bg-dev-darkPurple flex items-center gap-1"
-                    asChild
-                  >
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      No tags
+                    </Badge>
+                  )}
+                </div>
+
+                {/* Buttons section - always at the bottom */}
+                <div className="mt-auto flex gap-2">
+                  {project.githubUrl ? (
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="flex items-center gap-1"
+                      asChild
                     >
-                      Live Demo
-                      <ExternalLink className="h-4 w-4" />
-                    </a>
-                  </Button>
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Github className="h-4 w-4" />
+                        Code
+                      </a>
+                    </Button>
+                  ) : (
+                    <div className="flex-1"></div>
+                  )}
+
+                  {project.liveUrl ? (
+                    <Button
+                      size="sm"
+                      className="bg-dev-purple hover:bg-dev-darkPurple flex items-center gap-1 ml-auto"
+                      asChild
+                    >
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Live Demo
+                        <ExternalLink className="h-4 w-4" />
+                      </a>
+                    </Button>
+                  ) : (
+                    <div className="flex-1"></div>
+                  )}
                 </div>
               </div>
             </motion.div>
