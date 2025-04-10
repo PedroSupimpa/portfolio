@@ -9,6 +9,9 @@ const Hero = () => {
       id="home"
       className="min-h-screen w-full flex flex-col justify-center relative overflow-hidden pt-16"
     >
+      <div className="absolute inset-0 z-0">
+        <ThreeScene />
+      </div>
       <div className="section-container flex flex-col lg:flex-row items-center gap-12">
         <div className="flex-1 z-10">
           <motion.h3
@@ -78,10 +81,7 @@ const Hero = () => {
             stiffness: 100,
           }}
           className="relative w-full md:w-[450px] h-[450px] flex-shrink-0 z-10"
-        >
-          <ThreeScene />
-          <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent z-[-1]"></div>
-        </motion.div>
+        ></motion.div>
       </div>
 
       <motion.div
