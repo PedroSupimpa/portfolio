@@ -216,7 +216,7 @@ const Projects = () => {
             className="border-dev-purple text-dev-purple hover:bg-dev-purple hover:text-white"
             asChild
           >
-            <a href="#" target="_blank" rel="noopener noreferrer">
+            <a target="_blank" rel="noopener noreferrer">
               View All Projects
             </a>
           </Button>
